@@ -10,7 +10,9 @@ interface ValibotSwaggerPluginOptions {
 		title: string;
 		version: string;
 	};
-	addCommonResponses?: (route: RouteOptions) => Record<string, unknown>;
+	addCommonResponses?: (
+		route: RouteOptions
+	) => Record<number, v.GenericSchema>;
 }
 
 const convertSchema = (
@@ -103,7 +105,14 @@ const ValibotSwaggerPlugin: FastifyPluginAsync<
 
 			if (options.addCommonResponses) {
 				responses = {
-					...options.addCommonResponses(route),
+					...Object.fromEntries(
+						Object.entries(options.addCommonResponses(route)).map(
+							([code, codeSchema]) => [
+								code.toString(),
+								convertSchema(codeSchema, 'input')
+							]
+						)
+					),
 					...responses
 				};
 			}
