@@ -1,0 +1,70 @@
+{
+  "name": "fastify-valibot-tools",
+  "version": "1.0.0",
+  "description": "Tools to integrate valibot with fastify",
+  "keywords": [
+    "fastify",
+    "valibot",
+    "json-schema",
+    "validation"
+  ],
+  "homepage": "https://github.com/gergof/fastify-valibot-tools#readme",
+  "bugs": {
+    "url": "https://github.com/gergof/fastify-valibot-tools/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gergof/fastify-valibot-tools.git"
+  },
+  "license": "MIT",
+  "author": "Fandly Gergo <fandly.gergo@fndl.ro>",
+  "type": "module",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rimraf lib && tsc",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
+    "release": "commit-and-tag-version"
+  },
+  "files": [
+    "lib/**/*"
+  ],
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./to-json-schema": {
+      "types": "./lib/valibotToJsonSchema.d.ts",
+      "default": "./lib/valibotToJsonSchema.js"
+    },
+    "./validation-plugin": {
+      "types": "./lib/ValibotValidationPlugin.d.ts",
+      "default": "./lib/ValibotValidationPlugin.js"
+    }
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^26.6.5",
+    "commit-and-tag-version": "^13.3.0",
+    "eslint": "^10.12.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.7",
+    "eslint-plugin-simple-import-sort": "^14.0.0",
+    "prettier": "^3.9.10",
+    "rimraf": "^6.1.3",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.71.2"
+  },
+  "dependencies": {
+    "@valibot/to-json-schema": "^1.8.0",
+    "fast-json-stringify": "^7.1.0",
+    "fastify-plugin": "^6.0.1"
+  },
+  "peerDependencies": {
+    "fastify": "^5.12.7",
+    "valibot": "^1.5.0"
+  }
+}
